@@ -125,3 +125,23 @@ a:hover{border-bottom-color:var(--fg);}
 .prose p{
   margin: 0 0 14px;
 }
+/* Prose spacing */
+.prose{
+  margin-top: 18px;
+  max-width: 880px;
+}
+.prose p{
+  margin: 0 0 14px;
+}
+
+/* Selected work list readability */
+.works-list li{
+  margin: 10px 0;
+}
+.work-title{
+  display: inline-block;
+  min-width: 320px;
+}
+@media (max-width: 900px){
+  .work-title{ min-width: 0; display: inline; }
+}
