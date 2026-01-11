@@ -110,3 +110,18 @@ a:hover{border-bottom-color:var(--fg);}
   .hero-title{font-size:28px;}
   .contact{grid-template-columns:1fr;}
 }
+/* Works list formatting */
+.works-list li{
+  margin: 10px 0;
+}
+.work-title{
+  display: inline-block;
+  min-width: 280px;
+}
+.prose{
+  margin-top: 18px;
+  max-width: 860px;
+}
+.prose p{
+  margin: 0 0 14px;
+}
