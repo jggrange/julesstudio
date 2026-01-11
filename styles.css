@@ -1,5 +1,5 @@
 :root{
-  --bg:#ffffff;
+  --bg: #fbf7ef;
   --fg:#0b0b0b;
   --muted:#5a5a5a;
   --hairline:#e6e6e6;
@@ -145,3 +145,34 @@ a:hover{border-bottom-color:var(--fg);}
 @media (max-width: 900px){
   .work-title{ min-width: 0; display: inline; }
 }
+/* subtle time + date line */
+.timebar{
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--hairline);
+  padding-top: 14px;
+  max-width: 820px;
+}
+
+/* prose spacing */
+.prose{
+  margin-top: 18px;
+  max-width: 880px;
+}
+.prose p{
+  margin: 0 0 14px;
+}
+
+/* selected work list readability */
+.works-list li{
+  margin: 10px 0;
+}
+.work-title{
+  display: inline-block;
+  min-width: 320px;
+}
+@media (max-width: 900px){
+  .work-title{ min-width: 0; display: inline; }
+}
+
