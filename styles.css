@@ -1,5 +1,5 @@
 :root{
-  --bg: #fbf7ef;
+  --bg: #fdfbf6;
   --fg: #111;
   --muted: rgba(0,0,0,.55);
   --hairline: rgba(0,0,0,.12);
@@ -304,3 +304,31 @@ a:hover{
   .work-title{ min-width: 0; display: inline; }
 }
 
+/* subtle section separators (brings back the lines) */
+.section{
+  padding: 34px 0;
+  border-top: 1px solid var(--hairline);
+}
+.section:first-of-type{
+  border-top: 0;
+}
+
+/* under-header date/time: ensure clean spacing after "today is" */
+.underheader-inner .muted{
+  margin-right: 6px;
+}
+
+/* selected work list: make titles same size as everything else */
+.works-list li{
+  margin: 10px 0;
+  font-size: 13px;          /* force consistent size */
+  line-height: 1.45;
+}
+.work-title{
+  display: inline;          /* remove column-width effect */
+  min-width: 0;
+}
+.work-title em{
+  font-size: inherit;       /* prevent any inherited enlargement */
+  font-weight: inherit;
+}
