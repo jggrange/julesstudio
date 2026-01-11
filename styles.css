@@ -1,13 +1,23 @@
 :root{
-  --bg: #fdfbf6;
+  /* background + text */
+  --bg: #fdfbf6;                 /* near-white beige */
   --fg: #111;
   --muted: rgba(0,0,0,.55);
   --hairline: rgba(0,0,0,.12);
 
+  /* header */
+  --header-bg: #ffffff;
+
+  /* layout */
   --maxw: 980px;
   --pad: 22px;
-
   --radius: 14px;
+
+  /* type scale (keep everything consistent) */
+  --text: 13px;
+  --small: 12px;
+  --h1: 22px;
+  --h2: 14px;
 }
 
 *{ box-sizing: border-box; }
@@ -24,11 +34,12 @@ body{
   line-height: 1.45;
   letter-spacing: 0.01em;
 
-  /* hard-force lowercase (overrides any legacy capitalization rules) */
+  /* enforce lowercase everywhere */
   text-transform: lowercase;
+  font-size: var(--text);
 }
 
-/* override any prior CSS that might force caps */
+/* force lowercase even if legacy styles tried to capitalize */
 h1, h2, h3, h4, h5, h6,
 .name, .role,
 .nav a,
@@ -45,10 +56,9 @@ h1, h2, h3, h4, h5, h6,
   letter-spacing: 0.01em;
 }
 
-/* allow specific elements to keep original casing if you ever want it */
+/* optional escape hatch if you ever need proper casing */
 .nocase{ text-transform: none !important; }
 
-/* keep mono looking mono; still lowercase unless you wrap with .nocase */
 .mono{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   letter-spacing: 0.02em;
@@ -59,9 +69,7 @@ a{
   text-decoration: none;
   border-bottom: 1px solid var(--hairline);
 }
-a:hover{
-  border-bottom-color: rgba(0,0,0,.35);
-}
+a:hover{ border-bottom-color: rgba(0,0,0,.35); }
 
 .container{
   width: 100%;
@@ -71,8 +79,9 @@ a:hover{
 }
 
 .muted{ color: var(--muted); }
-.small{ font-size: 13px; }
+.small{ font-size: var(--small); }
 
+/* skip link */
 .skip-link{
   position: absolute;
   left: -999px;
@@ -81,15 +90,16 @@ a:hover{
 .skip-link:focus{
   left: var(--pad);
   top: var(--pad);
-  background: var(--bg);
+  background: #fff;
   border: 1px solid var(--hairline);
   padding: 10px 12px;
   border-radius: 10px;
   z-index: 9999;
 }
 
-/* header */
+/* header (white) */
 .site-header{
+  background: var(--header-bg);
   border-bottom: 1px solid var(--hairline);
 }
 .masthead{
@@ -101,9 +111,10 @@ a:hover{
 }
 .name{
   font-size: 16px;
+  margin: 0;
 }
 .role{
-  font-size: 13px;
+  font-size: var(--text);
   color: var(--muted);
   margin-top: 4px;
 }
@@ -115,7 +126,7 @@ a:hover{
   justify-content: flex-end;
 }
 .nav a{
-  font-size: 13px;
+  font-size: var(--text);
   color: var(--muted);
   border-bottom: 0;
 }
@@ -123,15 +134,21 @@ a:hover{
   color: rgba(0,0,0,.78);
 }
 
-/* date/time strip under header, right aligned */
+/* under-header date/time strip */
 .underheader{
+  background: var(--bg);
   padding: 10px 0 0;
 }
 .underheader-inner{
   display: flex;
   justify-content: flex-end;
-  font-size: 13px;
+  align-items: baseline;
+  gap: 0;
+  font-size: var(--text);
   color: var(--muted);
+}
+.underheader-inner .muted{
+  margin-right: 6px; /* ensures "today is " has space */
 }
 
 /* hero */
@@ -139,7 +156,7 @@ a:hover{
   padding: 28px 0 10px;
 }
 .hero-title{
-  font-size: 22px;
+  font-size: var(--h1);
   font-weight: 500;
   margin: 0 0 10px;
 }
@@ -147,10 +164,10 @@ a:hover{
   max-width: 820px;
   margin: 0 0 18px;
   color: rgba(0,0,0,.70);
-  font-size: 14px;
+  font-size: var(--text);
 }
 
-/* meta */
+/* meta blocks */
 .hero-meta{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -166,35 +183,40 @@ a:hover{
   background: rgba(255,255,255,.35);
 }
 .meta-label{
-  font-size: 12px;
+  font-size: var(--small);
   color: var(--muted);
   margin-bottom: 6px;
 }
 .meta-value{
-  font-size: 13px;
+  font-size: var(--text);
   color: rgba(0,0,0,.78);
 }
 
-/* sections */
+/* sections + separators */
 .section{
   padding: 34px 0;
+  border-top: 1px solid var(--hairline);
 }
+.section:first-of-type{
+  border-top: 0;
+}
+
 .section-header{
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 18px;
+  display: block;
   margin-bottom: 14px;
 }
 .section-header h2{
   margin: 0;
-  font-size: 14px;
+  font-size: var(--h2);
   font-weight: 600;
 }
 .section-subtitle{
   margin: 8px 0 0;
   color: var(--muted);
-  font-size: 13px;
+
+  /* critical: lock subtitle size so it cannot blow up */
+  font-size: var(--text) !important;
+  line-height: 1.45;
   max-width: 820px;
 }
 
@@ -205,6 +227,7 @@ a:hover{
 }
 .prose p{
   margin: 0 0 14px;
+  font-size: var(--text);
 }
 
 /* cards + grid */
@@ -221,22 +244,22 @@ a:hover{
   background: rgba(255,255,255,.35);
 }
 .card-title{
-  font-size: 13px;
+  font-size: var(--text);
   font-weight: 600;
   margin-bottom: 10px;
 }
 .card-text{
   margin: 0;
-  font-size: 13px;
+  font-size: var(--text);
   color: rgba(0,0,0,.78);
 }
 .card-footnote{
   margin-top: 10px;
-  font-size: 12px;
+  font-size: var(--small);
   color: var(--muted);
 }
 
-/* catalog */
+/* catalog (selected work) */
 .catalog{
   margin-top: 8px;
 }
@@ -247,13 +270,14 @@ a:hover{
   padding: 10px 0;
 }
 .catalog-title{
-  font-size: 13px;
+  font-size: var(--text);
   font-weight: 600;
 }
 .catalog-note{
   margin-top: 6px;
-  font-size: 12px;
+  font-size: var(--text) !important; /* lock size */
   color: var(--muted);
+  line-height: 1.45;
 }
 .divider{
   height: 1px;
@@ -269,16 +293,20 @@ a:hover{
 }
 .works-list li{
   margin: 10px 0;
+  font-size: var(--text) !important;  /* lock list size */
+  line-height: 1.45;
 }
 .work-title{
-  display: inline-block;
-  min-width: 340px;
+  display: inline;     /* no big column widths */
+  min-width: 0;
 }
 .work-title em{
+  font-size: inherit !important; /* prevent any enlargement */
+  font-weight: inherit;
   font-style: italic;
 }
 
-/* contact layout */
+/* contact */
 .contact{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -290,9 +318,11 @@ a:hover{
 .site-footer{
   border-top: 1px solid var(--hairline);
   margin-top: 22px;
+  background: var(--bg);
 }
 .footer-inner{
   padding: 18px 0;
+  font-size: var(--text);
 }
 
 /* responsive */
@@ -301,34 +331,4 @@ a:hover{
   .grid{ grid-template-columns: 1fr; }
   .catalog-row{ grid-template-columns: 1fr; }
   .contact{ grid-template-columns: 1fr; }
-  .work-title{ min-width: 0; display: inline; }
-}
-
-/* subtle section separators (brings back the lines) */
-.section{
-  padding: 34px 0;
-  border-top: 1px solid var(--hairline);
-}
-.section:first-of-type{
-  border-top: 0;
-}
-
-/* under-header date/time: ensure clean spacing after "today is" */
-.underheader-inner .muted{
-  margin-right: 6px;
-}
-
-/* selected work list: make titles same size as everything else */
-.works-list li{
-  margin: 10px 0;
-  font-size: 13px;          /* force consistent size */
-  line-height: 1.45;
-}
-.work-title{
-  display: inline;          /* remove column-width effect */
-  min-width: 0;
-}
-.work-title em{
-  font-size: inherit;       /* prevent any inherited enlargement */
-  font-weight: inherit;
 }
