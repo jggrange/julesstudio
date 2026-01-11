@@ -12,18 +12,6 @@
   <body>
     <a class="skip-link" href="#main">skip to content</a>
 
-    <!-- date + time (top of page) -->
-    <div class="topbar" aria-label="current date and time">
-      <div class="container">
-        <div class="topbar-inner">
-          <span class="muted">today is </span>
-          <span id="live-date" class="mono"></span>
-          <span class="muted"> · </span>
-          <span id="live-time" class="mono"></span>
-        </div>
-      </div>
-    </div>
-
     <header class="site-header">
       <div class="container">
         <div class="masthead">
@@ -34,6 +22,7 @@
 
           <nav class="nav" aria-label="primary">
             <a href="#about">about</a>
+            <a href="#verdigris">the verdigris project</a>
             <a href="#work">selected work</a>
             <a href="#links">links</a>
             <a href="#contact">contact</a>
@@ -43,6 +32,18 @@
     </header>
 
     <main id="main">
+      <!-- date/time under header, top-right -->
+      <div class="underheader" aria-label="current date and time">
+        <div class="container">
+          <div class="underheader-inner">
+            <span class="muted">today is </span>
+            <span id="live-date" class="mono"></span>
+            <span class="muted"> · </span>
+            <span id="live-time" class="mono"></span>
+          </div>
+        </div>
+      </div>
+
       <section class="hero">
         <div class="container">
           <h1 class="hero-title">welcome to studio jules.</h1>
@@ -98,6 +99,44 @@
         </div>
       </section>
 
+      <!-- replaces the former studio section -->
+      <section id="verdigris" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2>the verdigris project</h2>
+            <p class="section-subtitle">
+              an experimental design studio for visual language and built presentation: graphic design, gallery design, and production.
+            </p>
+          </div>
+
+          <div class="grid">
+            <article class="card">
+              <div class="card-title">graphic design</div>
+              <p class="card-text">
+                posters, programs, layouts, and identity systems (typography-forward)
+              </p>
+              <div class="card-footnote">identity · print · editorial</div>
+            </article>
+
+            <article class="card">
+              <div class="card-title">gallery design</div>
+              <p class="card-text">
+                how work is framed and encountered: placement, pacing, attention, and atmosphere.
+              </p>
+              <div class="card-footnote">exhibitions · installations · presentations</div>
+            </article>
+
+            <article class="card">
+              <div class="card-title">producing</div>
+              <p class="card-text">
+                the structure underneath: planning, timelines, coordination, behind-the-scenes execution.
+              </p>
+              <div class="card-footnote">development · logistics · delivery</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="work" class="section">
         <div class="container">
           <div class="section-header">
@@ -115,8 +154,7 @@
               </div>
               <div>
                 <ul class="list works-list">
-                  <li><span class="work-title"><em>here lies luxuria</em></span> — producer</li>
-                  <li><span class="work-title"><em>a gallery night w/ aurore masondieu</em></span> — producer</li>
+                  <li><span class="work-title"><em>here lies luxuria; a gallery night w/ aurore masondieu</em></span> — producer</li>
                   <li><span class="work-title"><em>drunk naked sex in a bathroom</em></span> — producer</li>
                   <li><span class="work-title"><em>bad blood</em></span> — producer</li>
                   <li><span class="work-title"><em>property rites</em></span> — producer</li>
@@ -241,11 +279,10 @@
             </div>
 
             <div class="card">
-              <div class="card-title">the verdigris project</div>
+              <div class="card-title">notes</div>
               <ul class="list">
-                <li>experimental design studio</li>
-                <li>graphic design · gallery design · producing</li>
-                <li>valencia · new orleans</li>
+                <li>based in valencia + new orleans</li>
+                <li>studio practice under the verdigris project</li>
               </ul>
             </div>
           </div>
@@ -262,10 +299,8 @@
     </footer>
 
     <script>
-      // footer year
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // live date + time (updates every second, includes seconds)
       const dateEl = document.getElementById("live-date");
       const timeEl = document.getElementById("live-time");
 
@@ -278,12 +313,9 @@
         const month = new Intl.DateTimeFormat(undefined, { month: "short" }).format(d);
         const day = d.getDate();
         const year = d.getFullYear();
-        const dateStr = `${weekday}, ${month} ${day} ${year}`.toLowerCase();
+        dateEl.textContent = `${weekday}, ${month} ${day} ${year}`.toLowerCase();
 
-        const timeStr = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-
-        dateEl.textContent = dateStr;
-        timeEl.textContent = timeStr;
+        timeEl.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
       }
 
       tick();
